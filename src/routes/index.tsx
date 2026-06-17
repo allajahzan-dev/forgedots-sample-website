@@ -117,7 +117,7 @@ function Home() {
           </motion.div>
           <h1
             className="display"
-            style={{ fontSize: "clamp(52px, 9vw, 120px)", marginBottom: 40 }}
+            style={{ fontSize: "clamp(44px, 7.5vw, 100px)", marginBottom: 40 }}
           >
             <Line i={0}>Transform Your</Line>
             <Line i={1}>Business With</Line>

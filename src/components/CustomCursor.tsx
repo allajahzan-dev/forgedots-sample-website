@@ -42,8 +42,8 @@ export default function CustomCursor() {
         translateY: "-50%",
       }}
       animate={{
-        width: hover ? 32 : 8,
-        height: hover ? 32 : 8,
+        width: hover ? 14 : 8,
+        height: hover ? 14 : 8,
       }}
       transition={{ type: "spring", damping: 25, stiffness: 300 }}
     />
