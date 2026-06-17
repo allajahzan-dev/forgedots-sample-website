@@ -185,10 +185,10 @@ img { max-width: 100%; display: block; }
   position: fixed;
   top: 0;
   left: 0;
-  width: 14px;
-  height: 14px;
+  width: 8px;
+  height: 8px;
   background: #0d0d0d;
-  border: 2px solid #ffffff;
+  border: 1.5px solid #ffffff;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -196,7 +196,7 @@ img { max-width: 100%; display: block; }
   will-change: transform;
 }
 .custom-cursor.cursor-hover {
-  background: var(--accent);
+  background: #0d0d0d;
   border-color: #ffffff;
 }
 
