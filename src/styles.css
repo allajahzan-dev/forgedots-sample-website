@@ -181,25 +181,23 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---------- Custom cursor ---------- */
-@media (hover: hover) and (pointer: fine) {
-  html, body, a, button, input, textarea { cursor: none; }
-  .custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 8px;
-    height: 8px;
-    background: var(--text);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-    will-change: transform;
-  }
-  .custom-cursor.cursor-hover {
-    background: transparent;
-    border: 1px solid var(--text);
-  }
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  background: #0d0d0d;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.35);
+  will-change: transform;
+}
+.custom-cursor.cursor-hover {
+  background: var(--accent);
+  border-color: #ffffff;
 }
 
 /* ---------- Marquee ---------- */
