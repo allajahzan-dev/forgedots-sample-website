@@ -6,26 +6,38 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  useRouterState,
 } from "@tanstack/react-router";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import CustomCursor from "../components/CustomCursor";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <div
+      style={{
+        display: "flex",
+        minHeight: "100vh",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "0 24px",
+        background: "var(--bg)",
+      }}
+    >
+      <div style={{ maxWidth: 480, textAlign: "center" }}>
+        <div className="display" style={{ fontSize: 120 }}>
+          404
+        </div>
+        <p style={{ marginTop: 16, color: "var(--text-secondary)" }}>
+          The page you're looking for doesn't exist.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
+        <div style={{ marginTop: 32 }}>
+          <Link to="/" className="btn btn-primary">
             Go home
           </Link>
         </div>
@@ -42,28 +54,33 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+    <div
+      style={{
+        display: "flex",
+        minHeight: "100vh",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "0 24px",
+      }}
+    >
+      <div style={{ maxWidth: 480, textAlign: "center" }}>
+        <h1 className="display" style={{ fontSize: 40 }}>
+          Something went wrong
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+        <p style={{ marginTop: 16, color: "var(--text-secondary)" }}>
+          Try again or head back home.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <div style={{ marginTop: 32, display: "flex", gap: 12, justifyContent: "center" }}>
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="btn btn-primary"
           >
             Try again
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
+          <a href="/" className="btn btn-outline">
             Go home
           </a>
         </div>
@@ -77,19 +94,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "ForgeDots Technologies — Data & AI for the Enterprise" },
+      {
+        name: "description",
+        content:
+          "ForgeDots Technologies delivers enterprise BI, data engineering, advanced analytics, and generative AI for organizations across the UAE, India, and beyond.",
+      },
+      { name: "author", content: "ForgeDots Technologies" },
+      { property: "og:title", content: "ForgeDots Technologies — Data & AI for the Enterprise" },
+      {
+        property: "og:description",
+        content: "Enterprise BI, Data Engineering, and Generative AI built for lasting results.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap",
       },
     ],
   }),
@@ -115,11 +141,26 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <CustomCursor />
+      <Navbar />
+      <main>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <Outlet />
+          </motion.div>
+        </AnimatePresence>
+      </main>
+      <Footer />
     </QueryClientProvider>
   );
 }
