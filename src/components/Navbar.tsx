@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import LogoMark from "./LogoMark";
 
 const LINKS = [
   { to: "/", label: "Home" },
@@ -47,12 +48,16 @@ export default function Navbar() {
         <Link
           to="/"
           style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 10,
             fontSize: 17,
             fontWeight: 700,
             letterSpacing: "0.02em",
             color: "var(--text)",
           }}
         >
+          <LogoMark size={26} />
           FORGEDOTS
         </Link>
         <nav style={{ display: "flex", gap: 40 }} aria-label="Main">
