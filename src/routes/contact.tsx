@@ -1,28 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import ServiceTicker from "../components/ServiceTicker";
 import ScrollReveal from "../components/ScrollReveal";
 import { COMPANY, SERVICES_LIST } from "../data/constants";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — ForgeDots Technologies" },
-      {
-        name: "description",
-        content:
-          "Talk to ForgeDots about your next data or AI initiative. Offices in Dubai, UAE and Surat, India.",
-      },
-      { property: "og:title", content: "Contact — ForgeDots Technologies" },
-      {
-        property: "og:description",
-        content: "Let's start a conversation. We respond within 24 hours.",
-      },
-    ],
-  }),
-  component: Contact,
-});
 
 const ENQUIRY_TYPES = [...SERVICES_LIST, "Others"];
 
@@ -244,3 +226,5 @@ function Contact() {
     </>
   );
 }
+
+export default Contact;

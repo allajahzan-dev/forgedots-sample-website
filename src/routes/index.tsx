@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import ServiceTicker from "../components/ServiceTicker";
@@ -13,24 +13,6 @@ import {
   INDUSTRIES,
 } from "../data/constants";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "ForgeDots Technologies — Transform Your Business With Data & AI" },
-      {
-        name: "description",
-        content:
-          "Enterprise-grade BI, Data Engineering, and Generative AI built for organizations that want lasting results, not just dashboards.",
-      },
-      { property: "og:title", content: "ForgeDots Technologies — Data & AI for the Enterprise" },
-      {
-        property: "og:description",
-        content: "Enterprise BI, Data Engineering, and Generative AI built for lasting results.",
-      },
-    ],
-  }),
-  component: Home,
-});
 
 const wipe = {
   hidden: { clipPath: "inset(100% 0 0 0)" },
@@ -419,3 +401,5 @@ function IndustryCell({ n, name }: { n: string; name: string }) {
     </motion.div>
   );
 }
+
+export default Home;

@@ -1,28 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import ServiceTicker from "../components/ServiceTicker";
 import TechMarquee from "../components/TechMarquee";
 import ServiceRow from "../components/ServiceRow";
 import ScrollReveal from "../components/ScrollReveal";
 import { SERVICES, PROCESS, FOCUS_TECH } from "../data/constants";
 
-export const Route = createFileRoute("/services")({
-  head: () => ({
-    meta: [
-      { title: "Services — ForgeDots Technologies" },
-      {
-        name: "description",
-        content:
-          "Enterprise BI, Data Engineering, Advanced Data Analytics, Generative AI, Managed Services, and Corporate Training — every layer of your data stack covered.",
-      },
-      { property: "og:title", content: "Services — ForgeDots Technologies" },
-      {
-        property: "og:description",
-        content: "Every layer of your data and AI stack — covered.",
-      },
-    ],
-  }),
-  component: Services,
-});
+
 
 function Services() {
   return (
@@ -221,3 +204,5 @@ function Services() {
     </>
   );
 }
+
+export default Services;

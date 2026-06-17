@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Linkedin } from "lucide-react";
 import { COMPANY } from "../data/constants";
 import LogoMark from "./LogoMark";
