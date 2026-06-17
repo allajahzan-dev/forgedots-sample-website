@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Linkedin } from "lucide-react";
 import { COMPANY } from "../data/constants";
+import LogoMark from "./LogoMark";
 
 export default function Footer() {
   return (
@@ -18,8 +19,9 @@ export default function Footer() {
         >
           <Link
             to="/"
-            style={{ fontSize: 17, fontWeight: 700, letterSpacing: "0.02em", color: "var(--text)" }}
+            style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: 17, fontWeight: 700, letterSpacing: "0.02em", color: "var(--text)" }}
           >
+            <LogoMark size={26} />
             FORGEDOTS
           </Link>
           <nav style={{ display: "flex", gap: 32 }}>
